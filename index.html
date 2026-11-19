@@ -647,10 +647,9 @@
 
       <div class="quote-card">
 
-        <form class="quote-form" id="quoteForm" action="https://formsubmit.co/ajax/info@plantationsaurora.com" method="post" novalidate>
+        <form class="quote-form" id="quoteForm" action="https://formspree.io/f/mnpdvrvn" method="post" novalidate>
           <input type="hidden" name="_subject" value="New hay price request from plantationsaurora.com">
-          <input type="hidden" name="_template" value="table">
-          <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
 
           <p class="group">Contact</p>
           <div class="field">
@@ -867,7 +866,7 @@
     })
       .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
       .then(function (res) {
-        if (!res.ok || String(res.d.success) !== 'true') throw new Error('failed');
+        if (!res.ok || (res.d && res.d.errors)) throw new Error('failed');
         form.reset();
         oftenField.hidden = true;
         often.required = false;
