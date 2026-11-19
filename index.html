@@ -418,6 +418,129 @@
 
   .email-link:hover { color: var(--accent-2); }
 
+  /* ---------- price request form ---------- */
+
+  section.pricing {
+    padding-block: 72px;
+    border-top: 1px solid var(--line);
+  }
+
+  section.pricing .intro {
+    max-width: 52ch;
+    margin-bottom: 32px;
+  }
+
+  section.pricing h2 {
+    font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+    margin-bottom: 12px;
+  }
+
+  section.pricing .intro p { color: var(--ink-soft); }
+
+  .quote-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+  }
+
+  .quote-form {
+    padding: 32px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px 28px;
+  }
+
+  .quote-form .field { display: flex; flex-direction: column; gap: 7px; }
+  .quote-form .field.full { grid-column: 1 / -1; }
+
+  .quote-form label,
+  .quote-form legend {
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .quote-form .req { color: var(--accent-2); margin-left: 2px; }
+
+  .quote-form input:not([type="checkbox"]):not([type="radio"]),
+  .quote-form select,
+  .quote-form textarea {
+    font: inherit;
+    font-size: 1rem;
+    color: var(--ink);
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 10px 12px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .quote-form textarea { resize: vertical; min-height: 110px; }
+
+  .quote-form input::placeholder,
+  .quote-form textarea::placeholder { color: var(--ink-soft); opacity: 0.75; }
+
+  .quote-form input:focus,
+  .quote-form select:focus,
+  .quote-form textarea:focus {
+    outline: 2px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    outline-offset: 0;
+    border-color: var(--accent);
+  }
+
+  .quote-form .hp { position: absolute; left: -9999px; }
+  .quote-form [hidden] { display: none !important; }
+
+  .quote-form .group {
+    grid-column: 1 / -1;
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 14px 0 -6px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+  }
+  .quote-form .group:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+
+  .quote-form .hint { font-weight: 400; color: var(--ink-soft); }
+
+  .quote-form fieldset { border: none; margin: 0; padding: 0; min-width: 0; }
+  .quote-form legend { padding: 0; margin-bottom: 9px; }
+  .quote-form .checks { display: flex; flex-wrap: wrap; gap: 10px 22px; }
+  .quote-form label.check {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-weight: 400; font-size: 1rem; cursor: pointer;
+  }
+  .quote-form label.check input { width: 18px; height: 18px; accent-color: var(--accent); margin: 0; }
+  .quote-form fieldset.invalid legend { color: #a2442a; }
+
+  .quote-form .combo { display: flex; gap: 14px; }
+  .quote-form .combo input { flex: 1 1 40%; }
+  .quote-form .combo select { flex: 1 1 60%; }
+
+  .quote-form .actions {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+  }
+
+  .quote-form .actions .btn { cursor: pointer; font-family: inherit; padding: 12px 24px; font-size: 0.95rem; }
+  .quote-form .actions .btn[disabled] { opacity: 0.6; cursor: wait; }
+
+  .form-status { margin: 0; font-size: 0.95rem; color: var(--ink-soft); }
+  .form-status.ok { color: var(--accent); font-weight: 600; }
+  .form-status.err { color: #a2442a; }
+
+  @media (max-width: 720px) {
+    .quote-form { grid-template-columns: 1fr; padding: 22px 18px; gap: 20px; }
+  }
+
   /* ---------- footer ---------- */
 
   footer.site {
@@ -466,7 +589,7 @@
       <h1>Premium dust&#8209;free hay, grown for wholesale.</h1>
       <p>We cut, cure, and bale every type of hay on our own farm in Quebec, Canada, and deliver it by the load to buyers across the United States and Europe.</p>
       <div class="hero-actions">
-        <a class="btn" href="#contact">Request pricing</a>
+        <a class="btn" href="#pricing">Request pricing</a>
         <a class="hero-link" href="#about">See our operation &rarr;</a>
       </div>
     </div>
@@ -514,6 +637,173 @@
     </div>
   </section>
 
+  <section class="pricing" id="pricing">
+    <div class="wrap">
+      <div class="intro">
+        <p class="eyebrow">Pricing</p>
+        <h2>Request wholesale prices</h2>
+        <p>Tell us what you need and where it's going. We'll reply with pricing delivered to your door.</p>
+      </div>
+
+      <div class="quote-card">
+
+        <form class="quote-form" id="quoteForm" action="https://formsubmit.co/ajax/info@plantationsaurora.com" method="post" novalidate>
+          <input type="hidden" name="_subject" value="New hay price request from plantationsaurora.com">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <p class="group">Contact</p>
+          <div class="field">
+            <label for="q-name">Name<span class="req">*</span></label>
+            <input id="q-name" name="Name" type="text" placeholder="Jordan Smith" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="q-company">Business or farm name</label>
+            <input id="q-company" name="Business or farm name" type="text" placeholder="Smith Stables" autocomplete="organization">
+          </div>
+          <div class="field">
+            <label for="q-email">Email<span class="req">*</span></label>
+            <input id="q-email" name="email" type="email" placeholder="jordan@email.com" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="q-phone">Phone <span class="hint">(optional, but it speeds things up)</span></label>
+            <input id="q-phone" name="Phone" type="tel" placeholder="+1 (xxx) xxx-xxxx" autocomplete="tel">
+          </div>
+
+          <p class="group">Delivery</p>
+          <div class="field">
+            <label for="q-country">Country<span class="req">*</span></label>
+            <select id="q-country" name="Country" required>
+              <option value="">Select country</option>
+              <option>United States</option>
+              <optgroup label="Europe">
+                <option>Austria</option><option>Belgium</option><option>Bulgaria</option><option>Croatia</option>
+                <option>Cyprus</option><option>Czech Republic</option><option>Denmark</option><option>Estonia</option>
+                <option>Finland</option><option>France</option><option>Germany</option><option>Greece</option>
+                <option>Hungary</option><option>Ireland</option><option>Italy</option><option>Latvia</option>
+                <option>Liechtenstein</option><option>Lithuania</option><option>Luxembourg</option><option>Malta</option>
+                <option>Netherlands</option><option>Norway</option><option>Poland</option><option>Portugal</option>
+                <option>Romania</option><option>Slovakia</option><option>Slovenia</option><option>Spain</option>
+                <option>Sweden</option><option>Switzerland</option><option>United Kingdom</option>
+              </optgroup>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="q-address">Delivery address, or at least postal code and town<span class="req">*</span></label>
+            <input id="q-address" name="Delivery address" type="text" placeholder="ex. 8000 Zürich, or 40511 Lexington, KY" autocomplete="street-address" required>
+          </div>
+
+          <p class="group">What you need</p>
+          <fieldset class="field full" id="q-animals">
+            <legend>Animals<span class="req">*</span></legend>
+            <div class="checks">
+              <label class="check"><input type="checkbox" name="Animals[]" value="Horses"> Horses</label>
+              <label class="check"><input type="checkbox" name="Animals[]" value="Dairy cows"> Dairy cows</label>
+              <label class="check"><input type="checkbox" name="Animals[]" value="Beef cows"> Beef cows</label>
+              <label class="check"><input type="checkbox" name="Animals[]" value="Sheep or goats"> Sheep or goats</label>
+              <label class="check"><input type="checkbox" name="Animals[]" value="Zoo or park animals"> Zoo or park animals</label>
+              <label class="check"><input type="checkbox" name="Animals[]" value="Other"> Other</label>
+            </div>
+          </fieldset>
+          <div class="field">
+            <label for="q-type">Hay type<span class="req">*</span></label>
+            <select id="q-type" name="Hay type" required>
+              <option value="">Choose an option</option>
+              <option>Timothy and grass (for horses)</option>
+              <option>Grass and alfalfa mix</option>
+              <option>Alfalfa</option>
+              <option>Not sure, advise me</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="q-cut">Cut</label>
+            <select id="q-cut" name="Cut">
+              <option value="">Choose an option</option>
+              <option>1st cut</option>
+              <option>2nd cut</option>
+              <option>No preference</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="q-bale">Bale format<span class="req">*</span></label>
+            <select id="q-bale" name="Bale format" required>
+              <option value="">Choose an option</option>
+              <option>Small squares (about 20–25 kg)</option>
+              <option>Large squares (90 × 120 × 240 cm, about 500 kg)</option>
+              <option>Round bales</option>
+              <option>Compressed bales</option>
+              <option>Flexible</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="q-qty">Quantity<span class="req">*</span></label>
+            <div class="combo">
+              <input id="q-qty" name="Quantity" type="number" min="1" step="any" inputmode="decimal" placeholder="ex. 40" required>
+              <select id="q-unit" name="Quantity unit" aria-label="Quantity unit" required>
+                <option>tonnes</option>
+                <option>bales</option>
+                <option>containers / truckloads</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="q-first">When do you need the first delivery?<span class="req">*</span></label>
+            <select id="q-first" name="First delivery" required>
+              <option value="">Choose an option</option>
+              <option>As soon as possible</option>
+              <option>Within 1 month</option>
+              <option>In 1–3 months</option>
+              <option>In 3–6 months</option>
+              <option>Later / flexible</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="q-freq">One-time purchase or regular deliveries?<span class="req">*</span></label>
+            <select id="q-freq" name="Purchase type" required>
+              <option value="">Choose an option</option>
+              <option>One-time purchase</option>
+              <option>Regular deliveries</option>
+            </select>
+          </div>
+          <div class="field" id="q-often-field" hidden>
+            <label for="q-often">How often?<span class="req">*</span></label>
+            <select id="q-often" name="Delivery frequency">
+              <option value="">Choose an option</option>
+              <option>Every week</option>
+              <option>Every 2 weeks</option>
+              <option>Every month</option>
+              <option>Every 2–3 months</option>
+              <option>A few times a year</option>
+            </select>
+          </div>
+
+          <p class="group">Useful extras</p>
+          <div class="field">
+            <label for="q-storage">How much can you store at one time?</label>
+            <input id="q-storage" name="Storage capacity" type="text" placeholder="ex. 25 tonnes, or one full truckload">
+          </div>
+          <fieldset class="field">
+            <legend>Do you need a forage analysis?</legend>
+            <div class="checks">
+              <label class="check"><input type="radio" name="Forage analysis" value="Yes"> Yes</label>
+              <label class="check"><input type="radio" name="Forage analysis" value="No"> No</label>
+            </div>
+          </fieldset>
+          <div class="field full">
+            <label for="q-msg">Anything else?</label>
+            <textarea id="q-msg" name="Message" placeholder="Quality specs, delivery access, anything you'd like to share..."></textarea>
+          </div>
+
+          <div class="actions">
+            <button class="btn" type="submit">Request pricing</button>
+            <p class="form-status" id="quoteStatus" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
   <section class="contact" id="contact">
     <div class="wrap">
       <p class="eyebrow" style="text-align:center;">Contact</p>
@@ -531,5 +821,66 @@
     <span class="domains">plantationsaurora.com &nbsp;·&nbsp; plantationsaurora.ca</span>
   </div>
 </footer>
+<script>
+(function () {
+  var form = document.getElementById('quoteForm');
+  if (!form) return;
+  var status = document.getElementById('quoteStatus');
+  var button = form.querySelector('button[type="submit"]');
+  var freq = document.getElementById('q-freq');
+  var oftenField = document.getElementById('q-often-field');
+  var often = document.getElementById('q-often');
+  var animals = document.getElementById('q-animals');
+
+  freq.addEventListener('change', function () {
+    var regular = freq.value === 'Regular deliveries';
+    oftenField.hidden = !regular;
+    often.required = regular;
+    if (!regular) often.value = '';
+  });
+
+  function animalsChosen() {
+    return animals.querySelectorAll('input:checked').length > 0;
+  }
+  animals.addEventListener('change', function () {
+    if (animalsChosen()) animals.classList.remove('invalid');
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    status.className = 'form-status';
+    var animalsOk = animalsChosen();
+    animals.classList.toggle('invalid', !animalsOk);
+    if (!form.checkValidity() || !animalsOk) {
+      var bad = form.querySelector(':invalid') || animals.querySelector('input');
+      status.textContent = 'Please fill in the required fields marked with *.';
+      status.classList.add('err');
+      if (bad) bad.focus();
+      return;
+    }
+    button.disabled = true;
+    status.textContent = 'Sending...';
+    fetch(form.action, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(form)
+    })
+      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+      .then(function (res) {
+        if (!res.ok || String(res.d.success) !== 'true') throw new Error('failed');
+        form.reset();
+        oftenField.hidden = true;
+        often.required = false;
+        status.textContent = 'Thanks! Your request is in. We\'ll get back to you with pricing soon.';
+        status.classList.add('ok');
+      })
+      .catch(function () {
+        status.innerHTML = 'Something went wrong. Please email us at <a href="mailto:info@plantationsaurora.com">info@plantationsaurora.com</a>.';
+        status.classList.add('err');
+      })
+      .then(function () { button.disabled = false; });
+  });
+})();
+</script>
 </body>
 </html>
