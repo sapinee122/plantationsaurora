@@ -372,6 +372,42 @@
 
   section.feature { position: relative; z-index: 0; }
 
+  /* ---------- uses ---------- */
+
+  section.uses {
+    padding-bottom: clamp(72px, 10vw, 128px);
+  }
+
+  section.uses h2 {
+    font-size: clamp(2.5rem, 5vw, 4.3rem);
+    max-width: 14ch;
+    margin-bottom: clamp(32px, 4vw, 48px);
+  }
+
+  .uses-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(20px, 3vw, 36px);
+  }
+
+  .use {
+    background: var(--paper);
+    border-top: 6px solid var(--straw);
+    border-radius: 6px;
+    padding: clamp(24px, 3vw, 40px);
+  }
+
+  .use h3 {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    margin-bottom: 14px;
+  }
+
+  .use p { color: var(--ink-soft); margin: 0; max-width: 46ch; }
+
+  @media (max-width: 720px) {
+    .uses-grid { grid-template-columns: 1fr; }
+  }
+
   /* ---------- wholesale band ---------- */
 
   section.wholesale {
@@ -660,6 +696,22 @@
       </div>
       <div class="feature-media">
         <img src="barn.jpg" alt="Large square hay bales stacked under the roof of a Plantations Aurora hay barn" width="1400" height="788" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </section>
+
+  <section class="uses" id="uses">
+    <div class="wrap">
+      <h2>Perfect for dairy herds and horses.</h2>
+      <div class="uses-grid">
+        <div class="use">
+          <h3>Dairy farms</h3>
+          <p>Leafy grass and alfalfa hay, cut at the right stage and baled the same way every time, so your herd's ration stays steady from one load to the next.</p>
+        </div>
+        <div class="use">
+          <h3>Horses</h3>
+          <p>Premium timothy and grass hay, clean and dust-free, for stables and equestrian centers that won't compromise on what goes in front of their horses.</p>
+        </div>
       </div>
     </div>
   </section>
